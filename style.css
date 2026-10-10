@@ -4,138 +4,347 @@
   --ink: #fff9ff;
   --muted: #f0e5f3;
   --accent: #ffd3e6;
-  --glass: rgba(23, 15, 33, .48);
-  --border: rgba(255, 255, 255, .32);
+
+  /* کادر شیشه‌ای شفاف‌تر */
+  --glass: rgba(23, 15, 33, .20);
+  --border: rgba(255, 255, 255, .42);
 }
-* { box-sizing: border-box; }
-html, body { margin: 0; width: 100%; min-height: 100%; }
+
+* {
+  box-sizing: border-box;
+}
+
+html,
 body {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
   min-height: 100svh;
   font-family: "Vazirmatn", Tahoma, sans-serif;
   color: var(--ink);
   background: #17111e;
 }
+
+/* عکس پس‌زمینه روشن‌تر و واضح‌تر */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -2;
-  background-image: linear-gradient(180deg, rgba(12, 8, 20, .20), rgba(12, 8, 20, .62)), var(--page-image, url("romina1.jpg"));
+
+  background-image:
+    linear-gradient(
+      180deg,
+      rgba(12, 8, 20, .05),
+      rgba(12, 8, 20, .20)
+    ),
+    var(--page-image, url("romina1.jpg"));
+
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
+
   transform: scale(1.025);
   transition: opacity .35s ease, background-image .4s ease;
 }
+
+/* کاهش تیرگی اطراف عکس */
 body::after {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
-  background: radial-gradient(circle at 50% 22%, transparent 0, rgba(8, 5, 15, .18) 58%, rgba(8, 5, 15, .62) 100%);
+
+  background: radial-gradient(
+    circle at 50% 22%,
+    transparent 0,
+    rgba(8, 5, 15, .03) 65%,
+    rgba(8, 5, 15, .15) 100%
+  );
+
   pointer-events: none;
 }
+
+/* ساختار اصلی صفحه */
 .story {
+  min-height: 100vh;
   min-height: 100svh;
   width: 100%;
-  padding: max(20px, env(safe-area-inset-top)) 20px max(22px, env(safe-area-inset-bottom));
+
+  padding:
+    max(20px, env(safe-area-inset-top))
+    20px
+    max(22px, env(safe-area-inset-bottom));
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 18px;
 }
+
+/* عنوان بالای صفحه */
 .topline {
   width: min(100%, 520px);
+
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
 }
-.eyebrow { font-size: 12px; color: #fff2fa; text-shadow: 0 1px 10px #000; }
+
+.eyebrow {
+  font-size: 12px;
+  color: #fff2fa;
+  text-shadow: 0 1px 10px #000;
+}
+
+/* دکمه موزیک */
 .sound {
   border: 1px solid var(--border);
   color: white;
-  background: rgba(255,255,255,.14);
+  background: rgba(255, 255, 255, .16);
+
   border-radius: 999px;
   padding: 8px 13px;
-  font: inherit;
+
+  font-family: inherit;
   font-size: 12px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
+
+/* نوار پیشرفت */
 .progress {
   width: min(100%, 520px);
   height: 3px;
-  background: rgba(255,255,255,.28);
+
+  background: rgba(255, 255, 255, .35);
   border-radius: 99px;
   overflow: hidden;
 }
+
 .progress-fill {
   display: block;
   height: 100%;
   width: 16.666%;
+
   background: linear-gradient(90deg, #fff, #ffc7df);
   border-radius: inherit;
+
   transition: width .35s ease;
 }
+
+/* کادر شیشه‌ای اصلی */
 .glass {
   width: min(100%, 520px);
   min-height: 340px;
-  padding: clamp(24px, 6vw, 38px) clamp(21px, 6vw, 36px) 27px;
+
+  padding:
+    clamp(24px, 6vw, 38px)
+    clamp(21px, 6vw, 36px)
+    27px;
+
   border: 1px solid var(--border);
   border-radius: 28px;
+
+  /* شفافیت بیشتر برای دیده شدن عکس پشت کادر */
   background: var(--glass);
-  box-shadow: 0 22px 70px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.15);
-  backdrop-filter: blur(17px) saturate(120%);
-  -webkit-backdrop-filter: blur(17px) saturate(120%);
+
+  box-shadow:
+    0 22px 70px rgba(0, 0, 0, .20),
+    inset 0 1px 0 rgba(255, 255, 255, .22);
+
+  /* کاهش محوشدگی شیشه */
+  backdrop-filter: blur(6px) saturate(120%);
+  -webkit-backdrop-filter: blur(6px) saturate(120%);
+
   text-align: center;
   position: relative;
+
   animation: appear .55s ease both;
 }
+
+/* شماره صفحه */
 .page-count {
   position: absolute;
   top: 15px;
   left: 18px;
-  color: rgba(255,255,255,.8);
+
+  color: rgba(255, 255, 255, .9);
   font-size: 11px;
 }
+
+/* نماد گل */
 .flower {
   font-size: 32px;
   line-height: 1;
   color: var(--accent);
+
   margin: 6px 0 17px;
-  text-shadow: 0 0 22px rgba(255,195,224,.5);
+
+  text-shadow: 0 0 22px rgba(255, 195, 224, .5);
 }
-.kicker { margin: 0 0 10px; font-size: 13px; color: var(--accent); font-weight: 600; }
-h1 { margin: 0 auto 16px; font-size: clamp(23px, 6vw, 32px); line-height: 1.65; font-weight: 800; text-wrap: balance; }
-.message { margin: 0 auto; max-width: 390px; font-size: clamp(14px, 3.8vw, 16px); line-height: 2.15; color: var(--muted); white-space: pre-line; }
-.divider { margin: 20px 0 18px; color: var(--accent); font-size: 18px; }
-.divider::before, .divider::after { content: ""; display: inline-block; width: 54px; height: 1px; margin: 0 10px 5px; background: rgba(255,255,255,.35); }
-.next, .restart {
+
+/* متن کوچک بالای عنوان */
+.kicker {
+  margin: 0 0 10px;
+
+  font-size: 13px;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* عنوان اصلی */
+h1 {
+  margin: 0 auto 16px;
+
+  font-size: clamp(23px, 6vw, 32px);
+  line-height: 1.65;
+  font-weight: 800;
+
+  text-wrap: balance;
+}
+
+/* متن اصلی */
+.message {
+  margin: 0 auto;
+  max-width: 390px;
+
+  font-size: clamp(14px, 3.8vw, 16px);
+  line-height: 2.15;
+
+  color: var(--muted);
+  white-space: pre-line;
+
+  text-shadow: 0 1px 4px rgba(0, 0, 0, .25);
+}
+
+/* جداکننده تزئینی */
+.divider {
+  margin: 20px 0 18px;
+  color: var(--accent);
+  font-size: 18px;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  display: inline-block;
+
+  width: 54px;
+  height: 1px;
+
+  margin: 0 10px 5px;
+
+  background: rgba(255, 255, 255, .45);
+}
+
+/* دکمه‌های حرکت بین صفحات */
+.next,
+.restart {
   min-width: 180px;
+
   border: 0;
   border-radius: 999px;
   padding: 12px 20px;
+
   color: #352031;
-  background: linear-gradient(135deg, #fff2f8, #ffc9e0);
-  box-shadow: 0 8px 24px rgba(255,194,222,.2);
+
+  background: linear-gradient(
+    135deg,
+    #fff2f8,
+    #ffc9e0
+  );
+
+  box-shadow: 0 8px 24px rgba(255, 194, 222, .2);
+
   font-family: inherit;
   font-size: 14px;
   font-weight: 700;
+
   cursor: pointer;
-  transition: transform .2s ease, filter .2s ease;
+
+  transition:
+    transform .2s ease,
+    filter .2s ease;
 }
-.next:active, .restart:active { transform: scale(.97); }
-.restart { background: rgba(255,255,255,.16); border: 1px solid var(--border); color: white; margin-top: 10px; }
-.hidden { display: none; }
-.hint { font-size: 11px; color: rgba(255,255,255,.83); text-align: center; margin: 0; text-shadow: 0 1px 8px #000; }
-@keyframes appear { from { opacity: 0; transform: translateY(12px) scale(.99); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+.next:active,
+.restart:active {
+  transform: scale(.97);
+}
+
+.restart {
+  background: rgba(255, 255, 255, .20);
+  border: 1px solid var(--border);
+  color: white;
+  margin-top: 10px;
+}
+
+/* مخفی کردن دکمه‌های غیرضروری */
+.hidden {
+  display: none;
+}
+
+/* متن راهنمای پایین صفحه */
+.hint {
+  font-size: 11px;
+  color: rgba(255, 255, 255, .92);
+
+  text-align: center;
+  margin: 0;
+
+  text-shadow: 0 1px 8px #000;
+}
+
+/* انیمیشن ظاهر شدن کادر */
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(.99);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* تنظیمات گوشی‌هایی با ارتفاع کم */
 @media (max-height: 700px) {
-  .story { gap: 12px; padding-top: 16px; padding-bottom: 16px; }
-  .glass { min-height: 0; padding-top: 24px; padding-bottom: 21px; }
-  .flower { margin: 3px 0 12px; }
-  .divider { margin: 12px 0; }
+  .story {
+    gap: 12px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .glass {
+    min-height: 0;
+    padding-top: 24px;
+    padding-bottom: 21px;
+  }
+
+  .flower {
+    margin: 3px 0 12px;
+  }
+
+  .divider {
+    margin: 12px 0;
+  }
 }
+
+/* کاهش انیمیشن برای افرادی که این تنظیم را فعال کرده‌اند */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
 }
