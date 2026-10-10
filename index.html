@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#140f20">
+  <title>برای رومینا 🌷</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <audio id="music" src="music.mp3" preload="auto" loop></audio>
+
+  <main class="story" aria-live="polite">
+    <div class="topline">
+      <span class="eyebrow">یک تبریک کوچک، برای یک آدمِ عزیز</span>
+      <button class="sound" id="soundBtn" type="button" aria-label="روشن یا خاموش کردن موزیک">♫ <span>موزیک</span></button>
+    </div>
+
+    <div class="progress" aria-label="پیشرفت داستان">
+      <span class="progress-fill" id="progressFill"></span>
+    </div>
+
+    <section class="glass" id="glass">
+      <div class="page-count" id="pageCount">۱ از ۶</div>
+      <div class="flower" aria-hidden="true">✿</div>
+      <p class="kicker" id="kicker">برای تو، رومینا</p>
+      <h1 id="title">روز دختر مبارک، دختر قشنگِ قصه‌ی من</h1>
+      <p class="message" id="message">بعضی آدم‌ها فقط وارد زندگی‌مان نمی‌شوند؛ با حضورشان، دنیا را کمی روشن‌تر می‌کنند.</p>
+      <div class="divider"><span>✧</span></div>
+      <button class="next" id="nextBtn" type="button">بریم صفحه بعد <span aria-hidden="true">←</span></button>
+      <button class="restart hidden" id="restartBtn" type="button">از اول بخونیم ↻</button>
+    </section>
+    <p class="hint" id="hint">برای شنیدن موزیک، یک بار روی دکمه موزیک بزن 🎵</p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
